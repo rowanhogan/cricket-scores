@@ -18,7 +18,7 @@ html {
 
 .button {
   display: inline-block;
-  padding: 1em;
+  padding: 1em 1.25em;
   background: whitesmoke;
   color: #555;
   text-decoration: none;
@@ -32,6 +32,8 @@ html {
 .match {
   margin-bottom: 1em;
 }
+
+.match date { display: block; }
 
 .match a:visited {
   background: #eee;

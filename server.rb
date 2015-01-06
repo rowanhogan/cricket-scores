@@ -32,7 +32,7 @@ get '/matches' do
       rowData["team_#{i}"] = team.children[0].to_s
     end
 
-    rowData["start_time"] = Time.parse(row.css('script')[0].children[0].to_s.strip.gsub('localizeDate(','').gsub(');','')).to_s
+    rowData["start_time"] = Date.parse(row.css('script')[0].children[0].to_s.strip.gsub('localizeDate(','').gsub(');','')).to_s
 
     if rowData['venueId'].nil?
       matches.push rowData
