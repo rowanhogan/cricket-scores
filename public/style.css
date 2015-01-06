@@ -1,0 +1,83 @@
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+
+html {
+  font-size: 100%;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  line-height: 1.5em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 1em;
+  background: whitesmoke;
+  color: #555;
+  text-decoration: none;
+  border-radius: .25em;
+}
+
+.button:hover {
+  background: #ddd;
+}
+
+.match {
+  margin-bottom: 1em;
+}
+
+.match a:visited {
+  background: #eee;
+}
+
+.score {
+  font-weight: 700;
+  font-size: 3em;
+  line-height: 1.25em;
+}
+
+
+.live {
+  display: inline-block;
+  background: limegreen;
+  color: white;
+  padding: 0 .5em;
+  font-size: 90%;
+  text-transform: uppercase;
+  border-radius: .25em;
+  margin: .5em 0 0;
+}
+
+.over {
+  margin: auto;
+  width: 15em;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ball {
+  display: inline-block;
+  margin: .25em;
+  width: 2em;
+  line-height: 2em;
+  border-radius: 50%;
+  background: whitesmoke;
+  text-align: center;
+}
+
+dt {
+  font-weight: bold;
+  margin: 1em;
+}
+
+dd {
+  margin: 0;
+  padding: 0;
+}

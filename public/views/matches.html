@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Latest Matches</h2>
+
+  <div class="match" ng-repeat="match in matches" ng-cloak>
+    <a class="button" ui-sref="match({ series_id: match.seriesId, match_id: match.matchId })">
+      <label>
+        <strong>{{match.team_0}}</strong>
+        <span>vs</span>
+        <strong>{{match.team_1}}</strong>
+      </label>
+
+      <date>{{ match.start_time | date:'medium' }}</date>
+    </a>
+  </div>
+</div>

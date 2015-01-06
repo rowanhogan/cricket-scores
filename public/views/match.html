@@ -1,0 +1,28 @@
+
+<div class="live" ng-if="match.live">Live</div>
+
+<h1>{{ match.series }} - {{ match.match }}</h1>
+
+<div class="score">{{ match.score }}</div>
+
+<dl>
+  <dt>Last wicket</dt>
+  <dd>
+   {{ match.d.MainScorecard.Sportsflash.Scorecard[0].LastWicket[0] }}
+  </dd>
+
+  <dt>Last 5 overs</dt>
+  <dd>
+    <div class="over" ng-repeat="over in match.d.MainScorecard.Sportsflash.Scorecard[0].Overs[0].Over">
+      <span class="ball" ng-repeat="ball in over.Ball">
+        {{ ball.Run[0] }}
+      </span>
+
+    </div>
+  </dd>
+
+  <dt>Last updated</dt>
+  <dd>{{ match.updated | date }}</dd>
+</dl>
+
+<a class="button" ui-sref="matches">Back</a>
