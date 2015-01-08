@@ -46,13 +46,27 @@ clientApp.controller('MatchesCtrl', function($scope, $rootScope, preloaded, $int
   }
 });
 
-clientApp.controller('MatchCtrl', function($scope, $rootScope, preloaded, $stateParams, $interval) {
+clientApp.controller('MatchCtrl', function($scope, $location, $rootScope, preloaded, $stateParams, $interval) {
   $scope.match = preloaded;
   $scope.scoreCard = $scope.match.d.MainScorecard.Sportsflash.Scorecard;
 
+  $scope.minimal = $location.search().minimal;
+
+  $scope.toggleMinimal = function () {
+    var minimal = $location.search().minimal;
+
+    if (minimal) {
+      $location.search('minimal', null);
+    } else {
+      $location.search('minimal', true);
+    }
+
+    $scope.minimal = $location.search().minimal;
+  }
+
   $rootScope.live = $interval(function() {
     $.getJSON('/cricket/' + $stateParams.series_id + '/' + $stateParams.match_id, function(data) {
-      console.log('loaded!');
+      // console.log('loaded!');
       $scope.match = data;
       $scope.scoreCard = $scope.match.d.MainScorecard.Sportsflash.Scorecard;
     })

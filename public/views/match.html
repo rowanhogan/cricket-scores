@@ -1,28 +1,38 @@
 
-<div class="live" ng-if="match.live">Live</div>
+<div class="match-container" ng-class="{ 'minimal' : minimal }">
 
-<h1>{{ match.series }} - {{ match.match }}</h1>
+  <div class="live" ng-if="match.live">Live</div>
 
-<div class="score">{{ match.score }}</div>
+  <h1>{{ match.series }} - {{ match.match }}</h1>
 
-<dl>
-  <dt>Last wicket</dt>
-  <dd>
-   {{ match.d.MainScorecard.Sportsflash.Scorecard[0].LastWicket[0] }}
-  </dd>
+  <div class="score">{{ match.score }}</div>
 
-  <dt>Last 5 overs</dt>
-  <dd>
-    <div class="over" ng-repeat="over in match.d.MainScorecard.Sportsflash.Scorecard[0].Overs[0].Over">
-      <span class="ball" ng-repeat="ball in over.Ball">
-        {{ ball.Run[0] }}
-      </span>
+  <div ng-if="!minimal">
 
-    </div>
-  </dd>
+    <dl>
+      <dt>Last wicket</dt>
+      <dd>
+       {{ match.d.MainScorecard.Sportsflash.Scorecard[0].LastWicket[0] }}
+      </dd>
 
-  <dt>Last updated</dt>
-  <dd>{{ match.updated | date }}</dd>
-</dl>
+      <dt>Last 5 overs</dt>
+      <dd>
+        <div class="over" ng-repeat="over in match.d.MainScorecard.Sportsflash.Scorecard[0].Overs[0].Over">
+          <span class="ball" ng-repeat="ball in over.Ball">
+            {{ ball.Run[0] }}
+          </span>
 
-<a class="button" ui-sref="matches">Back</a>
+        </div>
+      </dd>
+
+      <dt>Last updated</dt>
+      <dd>{{ match.updated | date }}</dd>
+    </dl>
+
+  </div>
+
+  <button ng-if="!minimal" class="button" ng-click="toggleMinimal()">Collapse</button>
+  <button ng-if="minimal" class="button" ng-click="toggleMinimal()">Expand</button>
+
+  <a class="button back-button" ui-sref="matches">Back</a>
+</div>

@@ -5,7 +5,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
 
-html {
+html, input, textarea, select, button {
   font-size: 100%;
   font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
   line-height: 1.5em;
@@ -13,7 +13,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   color: #444;
+}
+
+body {
   text-align: center;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.25em;
 }
 
 .button {
@@ -23,6 +30,7 @@ html {
   color: #555;
   text-decoration: none;
   border-radius: .25em;
+  border: 0;
 }
 
 .button:hover {
@@ -82,4 +90,21 @@ dt {
 dd {
   margin: 0;
   padding: 0;
+}
+
+
+.match-container.minimal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  padding: 2em;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+}
+
+.back-button {
+  margin: 2em auto;
 }
