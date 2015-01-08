@@ -50,6 +50,7 @@ clientApp.controller('MatchCtrl', function($scope, $location, $rootScope, preloa
   $scope.match = preloaded;
   $scope.scoreCard = $scope.match.d.MainScorecard.Sportsflash.Scorecard;
 
+  $('title').html("(" + $scope.scoreCard[0].Score[0] + ") " + $scope.match.score);
   $scope.minimal = $location.search().minimal;
 
   $scope.toggleMinimal = function () {
@@ -64,11 +65,38 @@ clientApp.controller('MatchCtrl', function($scope, $location, $rootScope, preloa
     $scope.minimal = $location.search().minimal;
   }
 
+  // $("#notification").notify_better({
+  //   interval: 2000,
+  //   url: "random_count.html",
+  //   overrideAjax: function() {
+  //     $.ajax({
+  //       url: "count.html",
+  //     }).done(function(data, textStatus, jqXHR) {
+  //       titleclear();
+  //       changeFavicon(data)
+  //       ...
+  //     });
+  //   },
+  //   updateTitle: false,
+  //   updateFavicon: {
+  //     id: "favicon",
+  //     backgroundColor: "#444",
+  //     textColor: "#fff",
+  //     location: "full",
+  //       shape: "square"
+  //   },
+  //   done: function() {
+  //     console.log('updated')
+  //   }
+  // });
+
+
   $rootScope.live = $interval(function() {
     $.getJSON('/cricket/' + $stateParams.series_id + '/' + $stateParams.match_id, function(data) {
       // console.log('loaded!');
       $scope.match = data;
       $scope.scoreCard = $scope.match.d.MainScorecard.Sportsflash.Scorecard;
+      $('title').html("(" + $scope.scoreCard[0].Score[0] + ") " + $scope.match.score);
     })
   }, 5000);
 });
