@@ -9,20 +9,46 @@
 
   <div ng-if="!minimal">
 
+    <h4>Current Over</h4>
+    <div class="current-over over">
+      <span class="ball" ng-repeat="ball in currentOver.Ball" ng-class="{ 'wicket' : ball.$.hasDismissed == 'true' }">
+        <span class='run'>{{ ball.Run[0] }}</span>
+      </span>
+    </div>
+
+    <table class="batsmen">
+      <thead>
+        <tr>
+          <th>Batsmen</th>
+          <th>Runs</th>
+          <th>Balls</th>
+          <th>4 / 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="batsman in batsmen">
+          <th>{{ batsman.Name[0] }}</th>
+          <td>{{ batsman.Run[0] }}</td>
+          <td>{{ batsman.BallsFaced[0] }}</td>
+          <td>{{ batsman.Four[0] }} / {{ batsman.Six[0] }}</td>
+        </tr>
+      </tbody>
+    </table>
+
     <dl>
-      <dt>Last wicket</dt>
-      <dd>
-       {{ match.d.MainScorecard.Sportsflash.Scorecard[0].LastWicket[0] }}
-      </dd>
 
       <dt>Last 5 overs</dt>
       <dd>
-        <div class="over" ng-repeat="over in match.d.MainScorecard.Sportsflash.Scorecard[0].Overs[0].Over">
-          <span class="ball" ng-repeat="ball in over.Ball">
-            {{ ball.Run[0] }}
+        <div class="over" ng-repeat="over in scoreCard.Overs[0].Over">
+          <span class="ball" ng-repeat="ball in over.Ball" ng-class="{ 'wicket' : ball.$.hasDismissed == 'true' }">
+            <span class='run'>{{ ball.Run[0] }}</span>
           </span>
-
         </div>
+      </dd>
+
+      <dt>Last wicket</dt>
+      <dd>
+       {{ scoreCard.LastWicket[0] }}
       </dd>
 
       <dt>Last updated</dt>

@@ -48,9 +48,13 @@ clientApp.controller('MatchesCtrl', function($scope, $rootScope, preloaded, $int
 
 clientApp.controller('MatchCtrl', function($scope, $location, $rootScope, preloaded, $stateParams, $interval) {
   $scope.match = preloaded;
-  $scope.scoreCard = $scope.match.d.MainScorecard.Sportsflash.Scorecard;
+  $scope.scoreCard = $scope.match.d.MainScorecard.Sportsflash.Scorecard[0];
 
-  $('title').html("(" + $scope.scoreCard[0].Score[0] + ") " + $scope.match.score);
+  $scope.currentOver = $scope.scoreCard.Overs[0].Over[$scope.scoreCard.Overs[0].Over.length - 1];
+
+  $scope.batsmen = $scope.scoreCard.Batsmen[0].Batsman;
+
+  $('title').html("(" + $scope.scoreCard.Score[0] + ") " + $scope.match.score);
   $scope.minimal = $location.search().minimal;
 
   $scope.toggleMinimal = function () {
@@ -65,40 +69,16 @@ clientApp.controller('MatchCtrl', function($scope, $location, $rootScope, preloa
     $scope.minimal = $location.search().minimal;
   }
 
-  // $("#notification").notify_better({
-  //   interval: 2000,
-  //   url: "random_count.html",
-  //   overrideAjax: function() {
-  //     $.ajax({
-  //       url: "count.html",
-  //     }).done(function(data, textStatus, jqXHR) {
-  //       titleclear();
-  //       changeFavicon(data)
-  //       ...
-  //     });
-  //   },
-  //   updateTitle: false,
-  //   updateFavicon: {
-  //     id: "favicon",
-  //     backgroundColor: "#444",
-  //     textColor: "#fff",
-  //     location: "full",
-  //       shape: "square"
-  //   },
-  //   done: function() {
-  //     console.log('updated')
-  //   }
-  // });
-
+  Tinycon.setBubble( parseInt($scope.scoreCard.Score[0].split('/')[0]) );
 
   $rootScope.live = $interval(function() {
     $.getJSON('/cricket/' + $stateParams.series_id + '/' + $stateParams.match_id, function(data) {
-      // console.log('loaded!');
       $scope.match = data;
-      $scope.scoreCard = $scope.match.d.MainScorecard.Sportsflash.Scorecard;
-      $('title').html("(" + $scope.scoreCard[0].Score[0] + ") " + $scope.match.score);
+      $scope.scoreCard = $scope.match.d.MainScorecard.Sportsflash.Scorecard[0];
+      $('title').html("(" + $scope.scoreCard.Score[0] + ") " + $scope.match.score);
+      Tinycon.setBubble( parseInt($scope.scoreCard.Score[0].split('/')[0]) );
     })
-  }, 5000);
+  }, 10000);
 });
 
 clientApp.service('Match', ['$http', '$q', function($http, $q) {
@@ -127,3 +107,9 @@ clientApp.service('Match', ['$http', '$q', function($http, $q) {
     find: find
   }
 }]);
+
+clientApp.filter('wicket', function() {
+  return function(boolean) {
+    return boolean == 'true' ? true : null;
+  };
+});

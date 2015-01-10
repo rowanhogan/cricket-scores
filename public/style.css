@@ -37,6 +37,10 @@ h1, h2, h3, h4 {
   background: #ddd;
 }
 
+.match-container {
+  padding: 1.5em;
+}
+
 .match {
   margin-bottom: 1em;
 }
@@ -49,7 +53,7 @@ h1, h2, h3, h4 {
 
 .score {
   font-weight: 700;
-  font-size: 3em;
+  font-size: 2.5em;
   line-height: 1.25em;
 }
 
@@ -67,7 +71,7 @@ h1, h2, h3, h4 {
 
 .over {
   margin: auto;
-  width: 15em;
+  width: 12.25em;
   text-align: left;
   white-space: nowrap;
 }
@@ -77,9 +81,29 @@ h1, h2, h3, h4 {
   margin: .25em;
   width: 2em;
   line-height: 2em;
+  text-align: center;
+  font-family: monospace;
   border-radius: 50%;
   background: whitesmoke;
-  text-align: center;
+}
+
+.ball.wicket {
+  position: relative;
+  background: hsl(0,85%,60%);
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+.ball.wicket:before {
+  content: 'W';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  line-height: 1em;
+  margin: -.5em;
+  text-indent: 0;
+  color: white;
 }
 
 dt {
@@ -107,4 +131,21 @@ dd {
 
 .back-button {
   margin: 2em auto;
+}
+
+.current-over {
+  font-size: 1.25em;
+}
+
+table {
+  text-align: left;
+  margin: 2em auto;
+}
+
+th, td {
+  padding: .25em .75em;
+}
+
+thead th, thead td {
+border-bottom: thin solid #ddd;
 }
