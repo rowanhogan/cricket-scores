@@ -55,18 +55,18 @@ clientApp.controller('MatchCtrl', function($scope, $location, $rootScope, preloa
   $scope.batsmen = $scope.scoreCard.Batsmen[0].Batsman;
 
   $('title').html("(" + $scope.scoreCard.Score[0] + ") " + $scope.match.score);
-  $scope.minimal = $location.search().minimal;
+  $scope.expanded = $location.search().expanded;
 
-  $scope.toggleMinimal = function () {
-    var minimal = $location.search().minimal;
+  $scope.toggleExpanded = function () {
+    var expanded = $location.search().expanded;
 
-    if (minimal) {
-      $location.search('minimal', null);
+    if (expanded) {
+      $location.search('expanded', null);
     } else {
-      $location.search('minimal', true);
+      $location.search('expanded', true);
     }
 
-    $scope.minimal = $location.search().minimal;
+    $scope.expanded = $location.search().expanded;
   }
 
   Tinycon.setBubble( parseInt($scope.scoreCard.Score[0].split('/')[0]) );
@@ -78,7 +78,7 @@ clientApp.controller('MatchCtrl', function($scope, $location, $rootScope, preloa
       $('title').html("(" + $scope.scoreCard.Score[0] + ") " + $scope.match.score);
       Tinycon.setBubble( parseInt($scope.scoreCard.Score[0].split('/')[0]) );
     })
-  }, 10000);
+  }, 30000);
 });
 
 clientApp.service('Match', ['$http', '$q', function($http, $q) {

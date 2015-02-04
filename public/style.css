@@ -37,10 +37,6 @@ h1, h2, h3, h4 {
   background: #ddd;
 }
 
-.match-container {
-  padding: 1.5em;
-}
-
 .match {
   margin-bottom: 1em;
 }
@@ -85,6 +81,7 @@ h1, h2, h3, h4 {
   font-family: monospace;
   border-radius: 50%;
   background: whitesmoke;
+  vertical-align: top;
 }
 
 .ball.wicket {
@@ -117,16 +114,23 @@ dd {
 }
 
 
-.match-container.minimal {
+.match-container {
+  padding: 1.5em;
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
-  padding: 2em;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   box-sizing: border-box;
+}
+
+.match-container.expanded {
+  position: static;
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
 }
 
 .back-button {

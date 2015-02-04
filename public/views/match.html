@@ -1,5 +1,5 @@
 
-<div class="match-container" ng-class="{ 'minimal' : minimal }">
+<div class="match-container" ng-class="{ 'expanded' : expanded }">
 
   <div class="live" ng-if="match.live">Live</div>
 
@@ -7,12 +7,14 @@
 
   <div class="score">{{ match.score }}</div>
 
-  <div ng-if="!minimal">
+  <div ng-if="expanded">
 
     <h4>Current Over</h4>
     <div class="current-over over">
       <span class="ball" ng-repeat="ball in currentOver.Ball" ng-class="{ 'wicket' : ball.$.hasDismissed == 'true' }">
         <span class='run'>{{ ball.Run[0] }}</span>
+        <span class='wide' ng-if="ball.$.extraType == 'wd'">WD</span>
+        <span class='no-ball' ng-if="ball.$.extraType == 'nb'">NB</span>
       </span>
     </div>
 
@@ -42,6 +44,8 @@
         <div class="over" ng-repeat="over in scoreCard.Overs[0].Over">
           <span class="ball" ng-repeat="ball in over.Ball" ng-class="{ 'wicket' : ball.$.hasDismissed == 'true' }">
             <span class='run'>{{ ball.Run[0] }}</span>
+            <span class='wide' ng-if="ball.$.extraType == 'wd'">WD</span>
+            <span class='no-ball' ng-if="ball.$.extraType == 'nb'">NB</span>
           </span>
         </div>
       </dd>
@@ -57,8 +61,8 @@
 
   </div>
 
-  <button ng-if="!minimal" class="button" ng-click="toggleMinimal()">Collapse</button>
-  <button ng-if="minimal" class="button" ng-click="toggleMinimal()">Expand</button>
+  <button ng-if="expanded" class="button" ng-click="toggleExpanded()">Collapse</button>
+  <button ng-if="!expanded" class="button" ng-click="toggleExpanded()">Expand</button>
 
   <a class="button back-button" ui-sref="matches">Back</a>
 </div>
