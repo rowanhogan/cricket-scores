@@ -19,7 +19,6 @@ get '/cricket/:series_id/:match_id' do
     data['match'] = page.css('#HeaderControl1_EventDetailsText')[0].children.to_s
     data['score'] = page.css('.MidContainerResultText td')[0].children.to_s
   end
-  # binding.pry
 
   data.to_json
 end

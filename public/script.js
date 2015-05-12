@@ -51,6 +51,7 @@ clientApp.controller('MatchesCtrl', function($scope, $rootScope, preloaded, $int
   $scope.matches = preloaded.matches;
   $rootScope.loading = false;
 
+  $('title').html('Cricket Scores');
   Tinycon.setBubble('');
 
   if ($rootScope.live) {
