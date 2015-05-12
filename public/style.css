@@ -1,4 +1,3 @@
-
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
@@ -23,6 +22,16 @@ h1, h2, h3, h4 {
   line-height: 1.25em;
 }
 
+a {
+  color: maroon;
+}
+
+hr {
+  border: 0;
+  border-top: thin solid #ddd;
+  margin: 2em;
+}
+
 .button {
   display: inline-block;
   padding: 1em 1.25em;
@@ -37,11 +46,34 @@ h1, h2, h3, h4 {
   background: #ddd;
 }
 
+.view-scorecard {
+  display: block;
+  margin: 2em auto -.25em;
+}
+
 .match {
   margin-bottom: 1em;
 }
 
-.match date { display: block; }
+.match date {
+  display: block;
+}
+
+.match label span, .match label strong,
+.match label img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.match label span {
+  margin: 0 .5em;
+}
+
+.match label img {
+  position: relative;
+  top: -1px;
+  margin-right: 2px;
+}
 
 .match a:visited {
   background: #eee;
@@ -52,7 +84,6 @@ h1, h2, h3, h4 {
   font-size: 2.5em;
   line-height: 1.25em;
 }
-
 
 .live {
   display: inline-block;
@@ -84,9 +115,14 @@ h1, h2, h3, h4 {
   vertical-align: top;
 }
 
+.wide, .no-ball {
+  font-size: 75%;
+  margin-left: -.75em;
+}
+
 .ball.wicket {
   position: relative;
-  background: hsl(0,85%,60%);
+  background: hsl(0, 85%, 60%);
   text-indent: -9999px;
   overflow: hidden;
 }
@@ -112,7 +148,6 @@ dd {
   margin: 0;
   padding: 0;
 }
-
 
 .match-container {
   padding: 1.5em;
@@ -150,6 +185,66 @@ th, td {
   padding: .25em .75em;
 }
 
-thead th, thead td {
-border-bottom: thin solid #ddd;
+thead th,  thead td {
+  border-bottom: thin solid #ddd;
+}
+
+#application {
+  min-height: 200px;
+}
+
+.loading {
+  opacity: .5;
+}
+
+.loading:after {
+  content: '';
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  border-right-color: maroon;
+  border-bottom-color: maroon;
+  z-index: 100;
+  -webkit-animation: rotation .5s infinite linear;
+  -moz-animation: rotation .5s infinite linear;
+  animation: rotation .5s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+
+@-moz-keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
 }

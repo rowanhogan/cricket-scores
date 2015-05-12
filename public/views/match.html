@@ -7,62 +7,66 @@
 
   <div class="score">{{ match.score }}</div>
 
-  <div ng-if="expanded">
+  <div ng-if="scoreCard">
 
-    <h4>Current Over</h4>
-    <div class="current-over over">
-      <span class="ball" ng-repeat="ball in currentOver.Ball" ng-class="{ 'wicket' : ball.$.hasDismissed == 'true' }">
-        <span class='run'>{{ ball.Run[0] }}</span>
-        <span class='wide' ng-if="ball.$.extraType == 'wd'">WD</span>
-        <span class='no-ball' ng-if="ball.$.extraType == 'nb'">NB</span>
-      </span>
+    <div ng-if="expanded">
+
+      <h4>Current Over</h4>
+      <div class="current-over over">
+        <span class="ball" ng-repeat="ball in currentOver.Ball" ng-class="{ 'wicket' : ball.$.hasDismissed == 'true' }">
+          <span class='run'>{{ ball.Run[0] }}</span>
+          <span class='wide' ng-if="ball.$.extraType == 'wd'">WD</span>
+          <span class='no-ball' ng-if="ball.$.extraType == 'nb'">NB</span>
+        </span>
+      </div>
+
+      <table class="batsmen">
+        <thead>
+          <tr>
+            <th>Batsmen</th>
+            <th>Runs</th>
+            <th>Balls</th>
+            <th>4 / 6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="batsman in batsmen">
+            <th>{{ batsman.Name[0] }}</th>
+            <td>{{ batsman.Run[0] }}</td>
+            <td>{{ batsman.BallsFaced[0] }}</td>
+            <td>{{ batsman.Four[0] }} / {{ batsman.Six[0] }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <dl>
+
+        <dt>Last 5 overs</dt>
+        <dd>
+          <div class="over" ng-repeat="over in scoreCard.Overs[0].Over">
+            <span class="ball" ng-repeat="ball in over.Ball" ng-class="{ 'wicket' : ball.$.hasDismissed == 'true' }">
+              <span class='run'>{{ ball.Run[0] }}</span>
+              <span class='wide' ng-if="ball.$.extraType == 'wd'">WD</span>
+              <span class='no-ball' ng-if="ball.$.extraType == 'nb'">NB</span>
+            </span>
+          </div>
+        </dd>
+
+        <dt>Last wicket</dt>
+        <dd>
+         {{ scoreCard.LastWicket[0] }}
+        </dd>
+
+        <dt>Last updated</dt>
+        <dd>{{ match.updated | date }}</dd>
+      </dl>
     </div>
 
-    <table class="batsmen">
-      <thead>
-        <tr>
-          <th>Batsmen</th>
-          <th>Runs</th>
-          <th>Balls</th>
-          <th>4 / 6</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="batsman in batsmen">
-          <th>{{ batsman.Name[0] }}</th>
-          <td>{{ batsman.Run[0] }}</td>
-          <td>{{ batsman.BallsFaced[0] }}</td>
-          <td>{{ batsman.Four[0] }} / {{ batsman.Six[0] }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <dl>
-
-      <dt>Last 5 overs</dt>
-      <dd>
-        <div class="over" ng-repeat="over in scoreCard.Overs[0].Over">
-          <span class="ball" ng-repeat="ball in over.Ball" ng-class="{ 'wicket' : ball.$.hasDismissed == 'true' }">
-            <span class='run'>{{ ball.Run[0] }}</span>
-            <span class='wide' ng-if="ball.$.extraType == 'wd'">WD</span>
-            <span class='no-ball' ng-if="ball.$.extraType == 'nb'">NB</span>
-          </span>
-        </div>
-      </dd>
-
-      <dt>Last wicket</dt>
-      <dd>
-       {{ scoreCard.LastWicket[0] }}
-      </dd>
-
-      <dt>Last updated</dt>
-      <dd>{{ match.updated | date }}</dd>
-    </dl>
-
+    <button ng-if="expanded" class="button" ng-click="toggleExpanded()">Collapse</button>
+    <button ng-if="!expanded" class="button" ng-click="toggleExpanded()">Expand</button>
   </div>
 
-  <button ng-if="expanded" class="button" ng-click="toggleExpanded()">Collapse</button>
-  <button ng-if="!expanded" class="button" ng-click="toggleExpanded()">Expand</button>
+  <a class="view-scorecard" ng-href="http://abchtml.cricket.scoreboard.sportsflash.com.au/Default.aspx?pg=sc&ln=en-US&seriesId={{ stateParams.series_id }}&matchId={{ stateParams.match_id }}" target="_blank">View full scorecard</a>
 
   <a class="button back-button" ui-sref="matches">Back</a>
 </div>

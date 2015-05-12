@@ -1,15 +1,36 @@
 <div class="container">
-  <h2>Latest Matches</h2>
+  <h1>Latest Matches</h1>
 
   <div class="match" ng-repeat="match in matches" ng-cloak>
     <a class="button" ui-sref="match({ series_id: match.seriesId, match_id: match.matchId })">
       <label>
-        <strong>{{match.team_0}}</strong>
+        <strong>
+          <img ng-src="{{ match.team_0_flag }}" ng-if="match.team_0_flag">
+          {{match.team_0}}
+        </strong>
         <span>vs</span>
-        <strong>{{match.team_1}}</strong>
+        <strong>
+          <img ng-src="{{ match.team_1_flag }}" ng-if="match.team_1_flag">
+          {{match.team_1}}
+        </strong>
       </label>
 
-      <date>{{ match.start_time }}</date>
+      <date>{{ match.start_time | date:'dd/MM/yyyy h:mma' }}</date>
     </a>
   </div>
+
+  <hr />
+
+  <div class="match" ng-cloak>
+    <h4>Example: World Cup 2015 Final</h4>
+
+    <a class="button" href="/#/2888/49?expanded">
+      <label>
+        <strong>Australia</strong>
+        <span>vs</span>
+        <strong>New Zealand</strong>
+      </label>
+    </a>
+  </div>
+
 </div>
