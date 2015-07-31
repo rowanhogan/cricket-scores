@@ -5,7 +5,7 @@
 
   <h1>{{ match.series }} - {{ match.match }}</h1>
 
-  <div class="score">{{ match.score }}</div>
+  <h2 class="score">{{ match.score }}</h2>
 
   <div ng-if="scoreCard">
 
@@ -66,7 +66,9 @@
     <button ng-if="!expanded" class="button" ng-click="toggleExpanded()">Expand</button>
   </div>
 
-  <a class="view-scorecard" ng-href="http://abchtml.cricket.scoreboard.sportsflash.com.au/Default.aspx?pg=sc&ln=en-US&seriesId={{ stateParams.series_id }}&matchId={{ stateParams.match_id }}" target="_blank">View full scorecard</a>
+  <a class="button" ng-href="http://abchtml.cricket.scoreboard.sportsflash.com.au/Default.aspx?pg=sc&ln=en-US&seriesId={{ stateParams.series_id }}&matchId={{ stateParams.match_id }}" target="_blank">View full scorecard</a>
 
-  <a class="button back-button" ui-sref="matches">Back</a>
+  <br>
+
+  <a ui-sref="matches">Back</a>
 </div>
